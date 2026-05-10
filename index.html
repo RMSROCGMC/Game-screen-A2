@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>東港海事虛擬校園</title>
+    <title>東港海事 3D 校園</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="ui">東港海事 3D 校園模擬</div>
+    <div id="ui">
+        <h1>東港海事 3D 校園</h1>
+        <p>單指旋轉 / 雙指縮放</p>
+    </div>
+
+    <div id="loader">
+        <div class="spinner"></div>
+        <p style="margin-top: 15px; color: #003366; font-weight: bold;">校園載入中...</p>
+    </div>
+
     <script type="importmap">
         {
             "imports": {
@@ -17,10 +26,13 @@
             }
         }
     </script>
-    <script type="module" src="main.js"></script>
+    <script type="module" src="game.js"></script>
+
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js');
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js');
+            });
         }
     </script>
 </body>
