@@ -1,7 +1,7 @@
 {
   "short_name": "東港海事3D",
-  "name": "國立東港高級海事水產職業學校 - 虛擬校園",
-  "description": "使用 Three.js 打造的東港海事 3D 模擬環境",
+  "name": "國立東港高級海事水產職業學校 - 3D校園",
+  "description": "由電子科學生開發的 3D PWA 校園模擬器",
   "icons": [
     {
       "src": "icon.png",
