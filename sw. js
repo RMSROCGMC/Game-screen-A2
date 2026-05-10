@@ -1,0 +1,7 @@
+const ASSETS = [
+  './',
+  './index.html',
+  './game.js',
+  './models/character.glb', // 你的 3D 模型
+  './textures/ground.jpg'    // 你的貼圖
+];
