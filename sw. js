@@ -1,7 +1,24 @@
-const ASSETS = [
+const CACHE_NAME = 'city-v1';
+const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './game.js',
-  './models/character.glb', // 你的 3D 模型
-  './textures/ground.jpg'    // 你的貼圖
+  './city.js',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png'
 ];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE))
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      // 回傳快取，或是發起網路請求
+      return response || fetch(event.request);
+    })
+  );
+});
