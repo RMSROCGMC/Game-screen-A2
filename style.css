@@ -1,0 +1,88 @@
+/* 1. 基礎重設：確保畫面填滿整個螢幕，不出現捲軸 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* 禁用手機端長按彈出選單，增加遊戲感 */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000; /* 防止 3D 載入前的白屏 */
+    font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+}
+
+/* 2. 3D 渲染容器：確保 Canvas 始終置底層並全螢幕 */
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    touch-action: none; /* 重要：防止瀏覽器的預設觸控行為（如縮放、下拉重新整理）干擾 3D 控制 */
+}
+
+/* 3. UI 介面：位於左上角的資訊面板 */
+#ui {
+    position: absolute;
+    top: env(safe-area-inset-top, 20px); /* 針對 iPhone 瀏海屏的優化 */
+    left: 20px;
+    padding: 12px 20px;
+    background: rgba(0, 51, 102, 0.85); /* 東港海事代表色：深藍色半透明 */
+    color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* 玻璃擬態效果 */
+    z-index: 10;
+    pointer-events: none; /* 讓滑鼠點擊穿透 UI，不影響 3D 旋轉 */
+}
+
+#ui h1 {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+}
+
+#ui p {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* 4. 載入動畫 (可選)：當模型很大時顯示 */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #aaccff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid #003366;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 5. 手機橫屏提示 (如果你的遊戲適合橫屏玩) */
+@media screen and (orientation: portrait) {
+    /* 這裡可以加入提示使用者橫過來玩的樣式 */
+}
