@@ -3,34 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>我的 3D PWA 城市</title>
+    <title>東港海事虛擬校園</title>
     <link rel="manifest" href="manifest.json">
-    <style>
-        body { margin: 0; background-color: #000; overflow: hidden; }
-        canvas { display: block; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="ui">東港海事 3D 校園模擬</div>
     <script type="importmap">
         {
-          "imports": {
-            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-            "three/examples/jsm/controls/OrbitControls.js": "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js"
-          }
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/examples/jsm/controls/OrbitControls.js": "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js"
+            }
         }
     </script>
-
-    <script type="module" src="city.js"></script>
-
+    <script type="module" src="main.js"></script>
     <script>
-        // 註冊 Service Worker (PWA 核心)
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW 註冊成功', reg))
-                    .catch(err => console.log('SW 註冊失敗', err));
-            });
+            navigator.serviceWorker.register('./sw.js');
         }
     </script>
 </body>
